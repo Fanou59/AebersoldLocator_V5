@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import useSWR from "swr";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <SearchBar />
+    </div>
+  );
 }
 
-export default App
+export default App;
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+function SearchBar() {
+  const [title, setTitle] = useState("");
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setTitle(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" placeholder="Search..." onChange={handleChange} />
+      <SearchResults title={title} />
+    </div>
+  );
+}
+
+function SearchResults({ title }) {
+  const { data, isLoading, isError } = useAebersold(title);
+  if (!title) return <div>Veuillez entrer un titre pour rechercher.</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error...</div>;
+
+  return (
+    <div>
+      {data.length > 0 ? (
+        data.map((item) => (
+          <div key={item.id}>
+            <h3>{item.title}</h3>
+            <p>Key: {item.key}</p>
+            <p>Style: {item.style}</p>
+            <p>Tempo: {item.tempo}</p>
+          </div>
+        ))
+      ) : (
+        <div>Aucun résultat trouvé.</div>
+      )}
+    </div>
+  );
+}
+
+function useAebersold(title) {
+  const { data, error, isLoading } = useSWR(
+    `http://127.0.0.1:8000/api/tracks/search?title=${title}`,
+    fetcher
+  );
+
+  return {
+    data,
+    isLoading,
+    isError: error,
+  };
+}

@@ -64,7 +64,11 @@ class AebersoldLocatorController extends AbstractController
                 'title' => $product->getTitle(),
                 'key' => $product->getKeyChord()->getKeyChord(),
                 'style' => $product->getStyle()->getType(),
-                'tempo' => $product->getTempo()->getSpeed()
+                'tempo' => $product->getTempo()->getSpeed(),
+                'album' => $product->getVolume()->getNumber(),
+                'chorus' => $product->getChorus()->getNumber(),
+                'disc' => $product->getDisc()->getNumber(),
+                'track' => $product->getTrack()->getNumber()
             ];
         }
 

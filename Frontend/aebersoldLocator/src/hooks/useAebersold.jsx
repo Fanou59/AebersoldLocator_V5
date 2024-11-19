@@ -4,7 +4,9 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function useAebersold(title) {
   const { data, error, isLoading } = useSWR(
-    `https://aebersoldlocator.alwaysdata.net/api/tracks/search?title=${title}`,
+    title
+      ? `https://aebersoldlocator.alwaysdata.net/api/tracks/search?title=${title}`
+      : null,
     fetcher
   );
 

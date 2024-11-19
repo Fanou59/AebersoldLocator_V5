@@ -7,7 +7,7 @@ function App() {
   const [title, setTitle] = useState("");
 
   return (
-    <div className="p-4">
+    <div className="p-4 flex space-y-2 flex-col">
       <header className="bg-indigo-800 text-white p-4 font-russo text-3xl mb-4">
         Aebersold Locator
       </header>

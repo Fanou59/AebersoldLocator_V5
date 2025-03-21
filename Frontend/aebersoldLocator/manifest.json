@@ -25,5 +25,35 @@
   "launch_handler": {
     "client_mode": "auto",
     "launch_mode": "standalone"
-  }
+  },
+  "screenshots": [
+    {
+      "src": "/accueil.png",
+      "sizes": "1170x2386",
+      "type": "image/png",
+      "platform": "ios",
+      "label": "Écran d'accueil de l'application"
+    },
+    {
+      "src": "/accueil.png",
+      "sizes": "1170x2386",
+      "type": "image/png",
+      "platform": "chrome",
+      "label": "Écran d'accueil de l'application"
+    },
+    {
+      "src": "/vue_liste.png",
+      "sizes": "1170x2389",
+      "type": "image/png",
+      "platform": "ios",
+      "label": "Vue de la liste des morceaux"
+    },
+    {
+      "src": "/vue_liste.png",
+      "sizes": "1170x2389",
+      "type": "image/png",
+      "platform": "chrome",
+      "label": "Vue de la liste des morceaux"
+    }
+  ]
 }

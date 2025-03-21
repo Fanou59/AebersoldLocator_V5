@@ -1,6 +1,6 @@
 {
   "name": "Aebersold Locator",
-  "short_name": "Locator",
+  "short_name": "A-Locator",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -20,5 +20,6 @@
   "lang": "fr",
   "orientation": "portrait",
   "categories": ["entertainment", "music", "productivity"],
-  "description": "Outil permettant de rechercher un standard de jazz dans la collection Aebersold.\nCet outil donnera toutes les infos relatives à ce standard et permettra également de retrouver le numéro d'Aebersold pour les backing tracks."
+  "description": "Outil permettant de rechercher un standard de jazz dans la collection Aebersold.\nCet outil donnera toutes les infos relatives à ce standard et permettra également de retrouver le numéro d'Aebersold pour les backing tracks.",
+  "id": "Aebersold_locator"
 }

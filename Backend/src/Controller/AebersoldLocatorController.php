@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 #[Route('/api', name: 'api_')]
 class AebersoldLocatorController extends AbstractController
@@ -31,23 +32,12 @@ class AebersoldLocatorController extends AbstractController
         return $this->json($data);
     }
 
-    // #[Route('/tracks/{id}', name: 'app_aebersold_locator_show', methods: ['GET'])]
-    // public function show(Morceaux $product): JsonResponse
-    // {
-    //     return $this->json([
-    //         'id' => $product->getId(),
-    //         'title' => $product->getTitle(),
-    //         'key' => $product->getKeyChord()->getKeyChord(),
-    //         'style' => $product->getStyle()->getType()
-    //     ]);
-    // }
-
     #[Route('/tracks/search', name: 'app_aebersold_locator_search', methods: ['GET'])]
     public function search(Request $request, EntityManagerInterface $em): JsonResponse
     {
         $title = $request->query->get('title');
         if (!$title) {
-            return $this->json(['error' => 'Title parameter is missing'], JsonResponse::HTTP_BAD_REQUEST);
+            return $this->json(['error' => 'Title parameter is missing'], Response::HTTP_BAD_REQUEST);
         }
 
         $products = $em->getRepository(Morceaux::class)->createQueryBuilder('m')

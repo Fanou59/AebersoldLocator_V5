@@ -1,4 +1,4 @@
-const Loader = ({ isLoading }) => {
+const Loader = ({ isLoading }: { isLoading: boolean }) => {
   if (!isLoading) return null;
 
   return (

@@ -1,8 +1,12 @@
+import useAebersold, { Track } from "../hooks/useAebersold";
 import DetailTrack from "./DetailTrack";
-import useAebersold from "../hooks/useAebersold";
 import Loader from "./Loader";
 
-function SearchResults({ title }) {
+type SearchResultsProps = {
+  title: string;
+};
+
+function SearchResults({ title }: SearchResultsProps) {
   const { data, isLoading, isError } = useAebersold(title);
   if (!title)
     return (
@@ -27,8 +31,10 @@ function SearchResults({ title }) {
           Résultats de la recherche :
         </h3>
         <div className="mt-4 flex flex-col space-y-3">
-          {data.length > 0 ? (
-            data.map((item) => <DetailTrack item={item} key={item.id} />)
+          {data && data.length > 0 ? (
+            data.map((track: Track) => (
+              <DetailTrack track={track} key={track.id} />
+            ))
           ) : (
             <div>Aucun résultat trouvé.</div>
           )}

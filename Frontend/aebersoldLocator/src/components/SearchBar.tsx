@@ -1,5 +1,9 @@
-function SearchBar({ setTitle }) {
-  const handleChange = (event) => {
+type SearchBarProps = {
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function SearchBar({ setTitle }: SearchBarProps) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value);
     setTitle(event.target.value);
   };
